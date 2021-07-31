@@ -1,0 +1,42 @@
+{
+  "name": "workshop-kubernetes",
+  "version": "1.0.0",
+  "description": "Workshop Kubernetes",
+  "main": "index.js",
+  "workspaces": [
+    "./packages/**/*"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "lint": "yarn prettier --list-different 'packages/**/*.{js,md}' 'docs/**/*.{js,md}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damienjacinto/workshop-kubernetes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damienjacinto/workshop-kubernetes/issues"
+  },
+  "homepage": "https://github.com/damienjacinto/workshop-kubernetes#readme",
+  "devDependencies": {
+    "@silvanite/vuepress-plugin-markdown-classes": "^1.0.2",
+    "husky": "^4.3.8",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "vuepress": "^1.8.0",
+    "vuepress-plugin-sitemap": "^2.3.1",
+    "vuepress-plugin-zooming": "^1.1.8"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "vuepress-plugin-code-copy": "^1.0.6"
+  }
+}
