@@ -1,11 +1,14 @@
 # Kubectl
 
-kubectl est un client qui permet d'interragir avec l'pai d'un cluster kubernetes.
+kubectl est un client qui permet d'interragir avec l'api d'un cluster kubernetes.
 
 C'est la commande que l'on va le plus utiliser dans la suite des ateliers et au quotidien, par comodité créer un alias pour kubectl (k)
 
 ```shell
+# Windows
 Set-Alias k kubectl
+# Linux
+alias k="kubectl"
 ```
 
 kubectl s'utilise de la facon suivante: kubectl _verbe_ _ressource_ _options_
@@ -47,7 +50,7 @@ k get nodes k3d-workshop-server-0 -o yaml
 
 </details>
 
-- Lister uniquement les informations des nodes étant _master_
+- Lister uniquement les informations des nodes ayant le rôle _master_
 
 > utiliser --help et le résultat de la commande précédente
 
@@ -81,3 +84,8 @@ k get events --sort-by='{.lastTimestamp}'
 ## Exercice 3
 
 - Réaliser les mêmes consultations avec _Lens_
+
+## Aller plus loin
+
+- Réaliser une intérrogation avec kubectl et l'option verbose (-v=7)
+- Utiliser [jq](https://stedolan.github.io/jq/) pour manipuler la sortie de kubectl avec l'option (-o json) pour extraire uniquement le nom des nodes

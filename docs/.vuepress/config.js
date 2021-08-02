@@ -1,5 +1,5 @@
 module.exports = {
-  head: [["link", { rel: "icon", type: "image/png", href: "/favicon.png" }]],
+  head: [["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }]],
   plugins: {
     sitemap: {
       hostname: "https://atelier-kubernetes.netlify.app",

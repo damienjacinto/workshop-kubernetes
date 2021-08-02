@@ -6,8 +6,8 @@ next: "./kubeconfig/"
 # Kubernetes
 
 Une distribution kubernetes correspond à une version de kubernetes standard avec plus ou moins de services annexes pré-packagés.
-Lors de cet atelier nous allons utiliser k3d qui est une version conteneurisée de [k3s](https://k3s.io/) qui est une distribution de kubernetes distribué par Rancher ([k3d](https://github.com/rancher/k3d))
-Cela veut dire que notre _control plane_ et nos _nodes_ seront conteneurisées, on ne pourra pas accéder aux éléments comme sur un cluster managé par un clouder.
+Lors de cet atelier nous allons utiliser k3d qui est une version conteneurisée de [k3s](https://k3s.io/) elle-même une distribution de kubernetes distribuée par Rancher ([k3d](https://github.com/rancher/k3d))
+Cela veut dire que notre _control plane_ et nos _nodes_ seront conteneurisées, on ne pourra pas accéder aux éléments comme c'est le cas sur un cluster managé par un clouder.
 
 ## Préparation
 
@@ -98,7 +98,7 @@ k3d cluster create workshop -a 1 -p "8081:80@loadbalancer"
 
 ## Arrêt du cluster
 
-A la fin de l'atelier vous pouvez arreter et reprendre votre cluster, la base de données etcd du cluster est dans un volume.
+A la fin de l'atelier vous pouvez arreter et reprendre votre cluster, la base de données etcd du cluster étant dans un volume.
 
 ### Arreter le cluster
 

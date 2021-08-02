@@ -107,9 +107,9 @@ Lors de la création d'un serviceaccount kubernetes lui associe un secret et not
 - Dechiffrer le token qui est en base64
 - Se connecter sur le dashboard kubernetes avec le token grâce au port-forward
 
-## Exercice 4 (facultatif)
+## Aller plus loin
 
-Dans l'exercice précédent on a associé à notre user un rôle au niveau cluster (clusterolebinding) qui lui donne tous les droits. Quel sera le résultat dans le dashboard si on associe simplement un role (rolebinding) qui limité par définition à un namespace ?
+Dans l'exercice précédent on a associé à notre user un rôle au niveau cluster (clusterolebinding) qui lui donne tous les droits. Quel sera le résultat dans le dashboard si on associe simplement un role (rolebinding) qui est limité par définition à un namespace ?
 
 - Supprimer le role créé dans l'exercice 3 (k delete clusterrolebinding dashboard-admin)
 - Créer un rolebinding en utilisant le clusterrole admin et le même user dashboard-admin

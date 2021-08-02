@@ -35,7 +35,7 @@ Certaines ressources ont un scope cluster d'autres ressources ont un scope names
 Pour faciliter les changements de contextes et namespace il existe des outils kubectx et kubens.
 
 - utiliser kubenswin ou kubens (Linux) pour naviguer entre les namespaces
-- consulter son kubeconfig entre chaque changement et comprendre les changements réalisés par kubenswin (sur windows C:\Users\\<user\>\\.kube\config)
+- consulter le fichier kubeconfig entre chaque changement et comprendre les changements réalisés par kubenswin (sur windows C:\Users\\<user\>\\.kube\config)
 
 Il existe aussi la commande kubectxwin ou kubectx (Linux) pour changer entierement de contexte (changer de cluster)
 
