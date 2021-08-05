@@ -15,10 +15,12 @@ Le minimum d'informations qu'il faut fournir pour qu'un pod s'execute est un nom
 Executer la commande:
 
 ```shell
-# pour suivre le cycle de vie du pod hello lancer cette commande dans une autre fenêtre
+# Pour suivre le cycle de vie du pod hello lancer cette commande dans une autre fenêtre
 k get po -w
-# Création du pod
+# Création du pod kubernetes < 1.20
 k run --generator=run-pod/v1 --image=nginxdemos/hello hello --restart='Never'
+# Création du pod kubernetes > 1.20
+k run --image=nginxdemos/hello hello --restart='Never'
 ```
 
 - Consulter la page nginx en réalisant un port-forward sur le port 80 du pod
