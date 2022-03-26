@@ -35,7 +35,24 @@ Créer un répertoire pour ces deux binaires et ajouter ce répertoire à votre 
 
 Pour déclarer des ressources dans un cluster kubernetes on utilise généralement le format yaml, pour rappel:
 
-- Les données sont présentées de manière hiérarchique par leur indentation, l'ordre au sein d'un même niveau de hiérarchie n'a pas d'incidence
+- Les données sont présentées de manière hiérarchique par leur indentation, l'ordre au sein d'un même niveau de hiérarchie n'a pas d'incidence.
 - La premiere indentation de X espaces ou X tabulations permet de définir la hiérarchie du document et les prochaines indentations devront être un multiple de ce nombre d'espaces.
 - Il est possible de renseigner plusieurs documents yaml au sein d'un même fichier en utilisant un séparateur '---'
 - Les tableaux peuvent être représentés par des [] ou un '-' avec un retour à la ligne
+
+### Exemple
+
+```yaml
+---
+receipt: Oz-Ware Purchase Invoice
+date: 2012-08-06
+customer:
+    given: Dorothy
+    family: Gale
+
+items:
+    - part_no: A4786
+      descrip: Water Bucket (Filled)
+      price: 1.47
+      quantity: 4
+```

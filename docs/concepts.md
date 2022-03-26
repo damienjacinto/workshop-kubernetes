@@ -15,8 +15,8 @@ Un cluster kubernetes s'efforce à tout instant de s'assurer que l'état souhait
 
 #### API
 
-Le control plane expose une api qui permet aussi bien aux clients (un devops par exemple) qu'aux différents éléments techniques du cluster de communiquer avec les controleurs et les nodes.
-L'api est en HTTP et implemente REST, des certificats permettent de garantir l'origine des appels. L'api est versionnée et extensible.
+Le control plane expose une api qui permet aussi bien aux clients (un devops par exemple) qu'aux différents éléments techniques du cluster de communiquer avec les contrôleurs et les nodes.
+L'api implemente REST, des certificats permettent de garantir l'origine des appels. L'api est versionnée et extensible.
 Par exemple pour avoir l'état d'une node on va requeter l'api qui exposera l'état de la node en interrogeant les services nécessaires, on ne se connectera pas directement à une node.
 
 #### ETCD
@@ -33,15 +33,15 @@ Réalise l'assignation des charges de travail (Pods) sur les nodes en utilisant 
 
 ### Nodes
 
-Les nodes forment la partie qui execute la charge de travail (Pods). Les nodes sont souvent hétérogènes. Dans un cluster managé les nodes sont gérées par le clouder aussi bien la partie provisonnement de l'instance (vm) que l'installation des composants et les configurations necessaires pour rejoindre le cluster.
+Les nodes forment la partie qui execute la charge de travail (Pods). Les nodes sont souvent hétérogènes. Dans un cluster managé les nodes sont gérées par le clouder aussi bien la partie provisonnement de l'instance (vm) que l'installation des composants et les configurations nécessaires pour rejoindre le cluster.
 
 #### kubeproxy & kubelet
 
 Sur une node on retrouve trois éléments:
 
 - le kubeproxy pour la partie réseau
-- le kubelet qui permet le dialoguer avec le master par l'api et qui dialogue avec le container runtime
-- le runtime container (souvent docker mais pas obligatoire)
+- le kubelet qui permet le dialoguer avec le master par l'api et qui dialogue avec le container runtime interface (CRI)
+- le CRI souvent docker pour kube < v1.22, cri-o kube > v1.22
 
 ## Ressources
 
@@ -81,7 +81,7 @@ Cycle de vide d'un pod
 ### Deploiement / StatefulSets / Deamonset / Jobs
 
 Pour manipuler plusieurs pods, gérer la redondance, les notions d'haute disponibilité, kubernetes nous permet de déclarer des charges de travail (Deploiement/StatefulSets/Deamonset/Jobs/...).
-Chaque type de charge de travail a ces propres proprités en terme d'ordonnancement, de mise à jour des pods, ect. Cette ressource gère la gestion de la montée de version des pods, des rollbacks.
+Chaque type de charge de travail a ces propres propriétés en terme d'ordonnancement, de mise à jour des pods, ect. Cette ressource gère la gestion de la montée de version des pods, des rollbacks.
 
 ```yaml
 apiVersion: apps/v1
@@ -130,7 +130,7 @@ spec:
 
 ### Configmaps & Secrets
 
-Un cluster kubernetes manipule uniquement des ressources, une installation standard de kubernetes vient donc avec un certain nombre de ressources pour répondre aux problèmatiques les plus courantes.
+Un cluster kubernetes manipule uniquement des ressources, une installation standard de kubernetes fournit donc avec des ressources pour répondre aux problèmatiques les plus courantes.
 Il existe par exemple une ressource ConfigMap qui permet de stocker de la configuration qui pourra etre injecté dans un pod.
 Les configmaps sont en clair, il existe une ressource sercets pour chiffrer des informations mais ce chiffrement est par défaut uniquement en base64.
 
@@ -165,7 +165,7 @@ Par exemple velero qui est un outil de sauvegarde, déclare à son installation 
 
 ### ServiceAccount & Role
 
-Il existe une ressource Role ou ClusterRole suivant le scope qui définit les actions possibles et les ressources accessibles sur l'api du cluster. Par défaut il exsite des rôles prédéfinis mais on peut ajouter des roles personnalisés. Ces roles s'appliquent à un acteur par le biais d'une ressource. Cette ressource va lister les acteurs sur lesquels le rôle ou cluster rôle s'applique, c'est le RoleBinding ou ClusterRoleBinding en fonction du scope namespace ou cluster. Les acteurs sont souvent définis comme des serviceaccount pour les utilisateurs techniques et les utilisateurs "humain".
+Il existe une ressource Role ou ClusterRole suivant le scope qui définit les actions possibles et les ressources accessibles sur l'api du cluster. Par défaut il existe des rôles prédéfinis mais on peut ajouter des roles personnalisés. Ces roles s'appliquent à un acteur par le biais d'une ressource. Cette ressource va lister les acteurs sur lesquels le rôle ou cluster rôle s'applique, c'est le RoleBinding ou ClusterRoleBinding en fonction du scope namespace ou cluster. Les acteurs sont souvent définis comme des ServiceAccount pour les utilisateurs techniques et les utilisateurs "humain".
 
 ## Deploiements
 
@@ -176,12 +176,12 @@ Schéma présentant une partie des ressources liées au déploiement d'une appli
 ## DNS
 
 Dans une distirbution de kubernetes, un resolver dns est installé (CoreDNS). Il permet au cluster de faire la résolution dns à l'interieur du cluster.
-Chaque élément d'un cluster a une ip dans le réseau virtuel du cluster (pods, service, ect). CoreDNS permet de résoudre ces IPs interne qui sont très volatiles par un nom.
+Chaque élément d'un cluster a une ip dans le réseau virtuel du cluster (pods, service, ect). CoreDNS permet de résoudre ces IPs internes qui sont très volatiles par un nom.
 A l'intérieur d'un namespace on pourra directement accéder à un service directement par son nom. On peut acceder au service d'un autre namespace par l'enregistement _&lt;service&gt;.&lt;namespace&gt;.svc.cluster.local_ (exemple: hello.workshop.svc.cluster.local)
 
 ## Helm
 
-Dans l'atelier kubernetes nous allons voir comment déployer une application avec un ou plusieurs fichiers yaml. Cette façon d'installer est fonctionnel mais n'est pas très souple ni très pratique.
+Dans l'atelier kubernetes nous allons voir comment déployer une application avec un ou plusieurs fichiers yaml. Cette façon d'installer est fonctionnelle mais n'est pas très souple ni très pratique.
 Helm a été créé pour répondre à ces problématiques.
 
 - Comment versionner le déploiement d'une application

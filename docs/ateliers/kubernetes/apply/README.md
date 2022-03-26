@@ -100,9 +100,9 @@ subjects:
 
 ## Exercice 3
 
-Lors de la création d'un serviceaccount kubernetes lui associe un secret et notamment un token qui va nous servir pour à nous connecter au dashboard
+Lors de la création d'un ServiceAccount kubernetes lui associe un secret et notamment un token qui va nous servir pour à nous connecter au dashboard
 
-- Consulter le serviceaccount créé dans les exercices précédents pour trouver le nom du secret
+- Consulter le ServiceAccount créé dans les exercices précédents pour trouver le nom du secret
 - Consulter le secret au format yaml pour récupérer le token
 - Dechiffrer le token qui est en base64
 - Se connecter sur le dashboard kubernetes avec le token grâce au port-forward

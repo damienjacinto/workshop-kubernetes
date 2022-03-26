@@ -59,7 +59,7 @@ k cp hello:/etc/nginx/conf.d/hello.conf .
 
 Pour gérer la résiliance des applications il faut utiliser les ressources pour gérer la charge de travail (deployments, statefulsets, ect).
 
-- Supprimer le pod exsitant avec la commande _k delete_
+- Supprimer le pod existant avec la commande _k delete_
 - Déployer l'application avec la commande _k create deploy --image=nginxdemos/hello hello_
 - Consulter les ressources pod, deploiement, replicasets
 - Supprimer un pod et observer le cycle de vie des pods du namespace
@@ -139,7 +139,7 @@ k expose deployment hello --port=80 --selector=application=hello
 ## Exercice 7
 
 La derniere pièce manquante de notre déploiement simplifié est l'ingress, cette ressource permet de faire du routage http du flux entrant dans le cluster vers nos services.
-L'ingress s'appuie sur un _Ingress controler_ qui est un element compélmentaire, pour configurer un élément qui étend les fonctionnalités de kubernetes on utilise le champ _annotation_.
+L'ingress s'appuie sur un _Ingress controler_ qui est un element complémentaire, pour configurer un élément qui étend les fonctionnalités de kubernetes on utilise le champ _annotation_.
 
 - Créer la ressource Ingress en appliquant un fichier yaml ou directement depuis l'invité de commande
 
@@ -201,4 +201,4 @@ EOF
 - Consulter les ingress pour connaître l'ip d'entrée du flux, depuis votre navigateur consulter plusieurs fois l'url pour illustrer le round-robin du service (Sur windows ajouter le port utilisé pour le loadbalancer 8081)
 
 > Il est possible suivant l'ingress controler de faire des règles de routing sur le host, l'ip, un header http, ect.
-> Il exsite aussi une ressource Egress permettant de gérer le flux sortant
+> Il existe aussi une ressource Egress permettant de gérer le flux sortant
