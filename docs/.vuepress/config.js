@@ -4,7 +4,7 @@ module.exports = {
   ],
   plugins: {
     sitemap: {
-      hostname: "https://atelier-kubernetes.netlify.app",
+      hostname: "https://peaks-workshop-kubernetes.netlify.app",
       exclude: ["/404"],
       dateFormatter: (val) => {
         return new Date().toISOString();
@@ -48,10 +48,6 @@ module.exports = {
       "/": {
         selectText: "Languages",
         label: "Français",
-        algolia: {
-          apiKey: "852f323ddf7de2b586ba06a76963d00c",
-          indexName: "formation",
-        },
         nav: [
           { text: "Accueil", link: "/" },
           { text: "Prérequis", link: "/prerequis.md" },
