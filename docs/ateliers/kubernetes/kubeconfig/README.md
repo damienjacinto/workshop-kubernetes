@@ -39,7 +39,7 @@ Dans un kubeconfig on retrouve 3 parties:
 - users: section qui contient les éléments pour identifier l'utilisateur qui se connecte (token, certificat, authentification externe).
 - context: section qui assemble un cluster et un user par son identifiant (name), le contexte est lui meme identifié par un nom.
 
-Le nommage des ressources est arbitraire il sert uniquement d'indentiant pour manipuler les informations et les assembler.
+Le nommage des ressources est arbitraire il sert uniquement d'indentifiant pour manipuler les informations et les assembler.
 Un fichier _kubeconfig_ peut contenir plusieurs users, plusieurs clusters et donc plusieurs contextes.
 
 ## Générer le kubeconfig

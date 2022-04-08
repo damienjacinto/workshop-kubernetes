@@ -19,6 +19,8 @@ Le control plane expose une api qui permet aussi bien aux clients (un devops par
 L'api implemente REST, des certificats permettent de garantir l'origine des appels. L'api est versionnée et extensible.
 Par exemple pour avoir l'état d'une node on va requeter l'api qui exposera l'état de la node en interrogeant les services nécessaires, on ne se connectera pas directement à une node.
 
+![concept](./assets/cluster.png)
+
 #### ETCD
 
 Base de données du cluster qui permet de stocker les ressources et "l'état déclaratif" du cluster.
@@ -40,8 +42,8 @@ Les nodes forment la partie qui execute la charge de travail (Pods). Les nodes s
 Sur une node on retrouve trois éléments:
 
 - le kubeproxy pour la partie réseau
-- le kubelet qui permet le dialoguer avec le master par l'api et qui dialogue avec le container runtime interface (CRI)
-- le CRI souvent docker pour kube < v1.22, cri-o kube > v1.22
+- le kubelet qui permet le dialoguer avec le control plane par l'api et qui dialogue avec le container runtime interface (CRI)
+- le CRI souvent docker pour kubernetes < v1.22, cri-o kubernetes > v1.22
 
 ## Ressources
 

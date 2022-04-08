@@ -32,7 +32,7 @@ k3d version
 <summary>Linux</summary>
 
 ```shell
-wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
+wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 ```
 
 vérifier l'installation (k3s porte la version de kubernetes)
@@ -96,9 +96,11 @@ k3d cluster create workshop -a 1 -p "8081:80@loadbalancer"
 - L'option -p permet de mettre en place un proxy pour faire correspondre le flux d'entrée du cluster sur le port 80 avec un port local pour simuler un loadbalancer d'un clouder
 - k3d créé un control plane et une node qui est nommé "master", l'option -a ajoute une node ou "agent" dans le cluster (on aura donc 2 nodes dans notre cluster)
 
+![k3d](./../../assets/k3d.png)
+
 ## Arrêt du cluster
 
-A la fin de l'atelier vous pouvez arreter et reprendre votre cluster, la base de données etcd du cluster étant dans un volume.
+A la fin de l'atelier vous pouvez arreter et reprendre votre cluster, la base de données du cluster étant conservée dans un volume.
 
 ### Arreter le cluster
 

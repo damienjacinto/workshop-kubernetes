@@ -2,7 +2,7 @@
 
 kubectl est un client qui permet d'interragir avec l'api d'un cluster kubernetes.
 
-C'est la commande que l'on va le plus utiliser dans la suite des ateliers et au quotidien, par comodité créer un alias pour kubectl (k)
+C'est la commande qui va être le plus utilisé dans la suite de cet atelier mais aussi au quotidien dans votre usage de kubernetes, par comodité créer un alias pour kubectl (k)
 
 ```shell
 # Windows
@@ -11,13 +11,43 @@ Set-Alias k kubectl
 alias k="kubectl"
 ```
 
-kubectl s'utilise de la facon suivante: kubectl _verbe_ _ressource_ _options_
+kubectl s'utilise de la facon suivante: kubectl _\<verbe\>_ _\<ressource\>_ _\<options\>_
+
+Exemple de verbes disponibles: get (GET), create (POST), patch (PUT), delete (DELETE)
 
 ```shell
-kubectl api-resources #liste toutes les resources gérées par l'api
+kubectl api-resources #liste toutes les ressources gérées par l'api kubernetes
 kubectl get pods # Liste les pods dans le namespace courant
 kubectl get pods -A # Liste tous les pods du cluster
 ```
+
+Malgré l'aspect ligne de commande, kubectl est très complet, l'helper contient beaucoup d'exemples. Il y a des corrections quand une commande est mal saisie et l'autocomplétion est disponible directement depuis une option.
+
+<details>
+<summary>Windows</summary>
+
+```shell
+kubectl completion powershell >> $PROFILE
+#ouvrir un nouvel invité de commande
+```
+
+</details>
+
+<details>
+<summary>Linux</summary>
+
+```shell
+#pour bash
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+#si vous utilisez l'alias k
+echo 'complete -F __start_kubectl k' >>~/.bashrc
+
+#pour zsh
+k3d completion zsh > ~/.zsh/completions/_k3d
+source .zshrc
+```
+
+</details>
 
 ## Exercice 1
 
@@ -32,7 +62,7 @@ k get nodes
 
 </details>
 
-Pour la commande get il est possible d'avoir plus d'informations en utilisant _-o wide_.
+Pour la commande _get_ il est possible d'avoir plus d'informations en utilisant _-o wide_.
 Par défaut kubectl présente les informations dans un tableau qui est défini par la ressource, pour avoir vraiment toutes les informations sur une ressource il faut passer au format yaml ou json.
 
 - Lister toutes les informations sur les nodes du clusters au format yaml
@@ -89,3 +119,12 @@ k get events --sort-by='{.lastTimestamp}'
 
 - Réaliser une intérrogation avec kubectl et l'option verbose (-v=7)
 - Utiliser [jq](https://stedolan.github.io/jq/) pour manipuler la sortie de kubectl avec l'option (-o json) pour extraire uniquement le nom des nodes
+
+<details>
+<summary>Solution</summary>
+
+```shell
+k get no -o json | jq '[.items[] | .metadata.name]'
+```
+
+</details>

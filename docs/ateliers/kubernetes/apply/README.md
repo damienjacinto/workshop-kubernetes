@@ -6,7 +6,7 @@ Nous allons profiter de cet atelier pour l'installler et voir une autre manière
 Consulter la page [dashboard](https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml)
 Ce fichier yaml contient toutes les ressources nécessaires pour réaliser le déploiement du dashboard.
 
-Il contient de maniere non exaustive:
+Il contient de manière non exaustive:
 
 - création d'un namespace kubernetes-dashboard
 - création d'un service pour exposer le dashboard
@@ -56,7 +56,7 @@ Pour se connecter au dashboard kubernetes il faut renseigner un token d'un utili
 Nous allons dans cet exercice créer un user avec une autre methode de modification d'un cluster.
 
 - Créer un user technique (serviceaccount) 'dashboard-admin' dans le namespace kubernetes-dashboard en utilisant _k create sa_
-- Lister les roles au niveau cluster existant (clusterrole). Kubernetes propose des rôles déjà existant, consulter notamment le cluster rôle 'admin' au format yaml
+- Lister les roles existants au niveau cluster (clusterrole). Kubernetes propose déjà des rôles, consulter notamment le cluster rôle 'admin' au format yaml
 - Créer un clusterrolebinding en précisant uniquement le rôle 'admin' _k create clusterrolebinding_
 - Consulter au format yaml le clusterrolebinding créé précédement
 - Utiliser la commande _k explain_ pour comprendre les champs disponibles sur une ressource clusterrolebinding et notammment comprendre comment modifier notre ressource pour ajouter le rôle 'kubernetes-dashboard' uniquement à notre user 'dashboard-admin'
@@ -114,3 +114,12 @@ Dans l'exercice précédent on a associé à notre user un rôle au niveau clust
 - Supprimer le role créé dans l'exercice 3 (k delete clusterrolebinding dashboard-admin)
 - Créer un rolebinding en utilisant le clusterrole admin et le même user dashboard-admin
 - Consulter le namespace kubernetes-dashboard dans le dahsboard, consulter le namespace kube-system.
+
+<details>
+<summary>Solution</summary>
+
+Dans une application dite 'cloud native', on va s'appuyer sur la gestion des droits dans kubernetes pour gérer les droits au niveau de l'application.
+En donnant des droits limités au namespace à l'utilisateur par l'intermédiaire d'un rolebinding qui est une ressource par namespace, l'utilisateur ne verra que les ressources du namespace pour lequel le role lui a été affecté.
+On pourra aller encore plus finement dans les droits en créant un role spécifiquement pour l'utilisateur et en n'autorisant pas certaines ressources.
+
+</details>

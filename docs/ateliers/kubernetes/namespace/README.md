@@ -1,13 +1,13 @@
 # Namespace & Scope
 
 Dans un cluster kubernetes il est possible de faire de l'isolation par namespace qui se traduit par des restrictions d'accès et un nommage unique au sein d'un namespace.
-On utilise les namespaces pour isoler certaines applications d'autres applications avec des droits utilisateurs. Ce n'est pas une isolation forte en dehors des droits utilisateurs.
+On utilise les namespaces pour isoler certaines applications et certains accès utilisateurs. Ce n'est pas une isolation forte en dehors des droits utilisateurs (isolation réseau voir du coté des NetworkPolicy).
 
-Par défaut une interrogation d'un client ou d'un service au sein d'un cluster se réalise sur le namespace courant.
+Par défaut une interrogation d'un client ou d'un service au sein d'un cluster se réalise sur le namespace courant (namespace par défaut : default).
 
 ## Exercice 1
 
-- Lister les namespaces du cluster (utiliser l'alias de namespaces _k api-resources_)
+- Lister les namespaces du cluster (utiliser l'alias de namespaces cf _k api-resources_)
 - Créer un namespace workshop
 - Se placer dans le namespace créé avec la commande 'k config set-context --current --namespace=workshop'
 - lister les pods du namespace courant (option par defaut)

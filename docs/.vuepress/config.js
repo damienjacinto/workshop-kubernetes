@@ -1,5 +1,7 @@
 module.exports = {
-  head: [["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }]],
+  head: [
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+  ],
   plugins: {
     sitemap: {
       hostname: "https://atelier-kubernetes.netlify.app",
@@ -54,7 +56,7 @@ module.exports = {
           { text: "Accueil", link: "/" },
           { text: "Prérequis", link: "/prerequis.md" },
           { text: "Concepts", link: "/concepts.md" },
-          { text: "Ateliers", link: "/ateliers/" },
+          { text: "Ateliers", link: "/ateliers/kubernetes/" },
           { text: "Liens", link: "/liens.md" },
         ],
         sidebar: [
