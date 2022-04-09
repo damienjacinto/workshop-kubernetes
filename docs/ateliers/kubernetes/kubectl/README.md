@@ -2,7 +2,7 @@
 
 kubectl est un client qui permet d'interragir avec l'api d'un cluster kubernetes.
 
-C'est la commande qui va être le plus utilisé dans la suite de cet atelier mais aussi au quotidien dans votre usage de kubernetes, par comodité créer un alias pour kubectl (k)
+C'est la commande qui va être le plus utilisée dans la suite de cet atelier mais aussi au quotidien dans votre usage de kubernetes, par commodité créer un alias pour kubectl (k)
 
 ```shell
 # Windows
@@ -27,8 +27,8 @@ Malgré l'aspect ligne de commande, kubectl est très complet, l'helper contient
 <summary>Windows</summary>
 
 ```shell
+#powershell
 kubectl completion powershell >> $PROFILE
-#ouvrir un nouvel invité de commande
 ```
 
 </details>
@@ -37,12 +37,12 @@ kubectl completion powershell >> $PROFILE
 <summary>Linux</summary>
 
 ```shell
-#pour bash
+#bash
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 #si vous utilisez l'alias k
 echo 'complete -F __start_kubectl k' >>~/.bashrc
 
-#pour zsh
+#zsh
 k3d completion zsh > ~/.zsh/completions/_k3d
 source .zshrc
 ```
@@ -66,9 +66,10 @@ Pour la commande _get_ il est possible d'avoir plus d'informations en utilisant 
 Par défaut kubectl présente les informations dans un tableau qui est défini par la ressource, pour avoir vraiment toutes les informations sur une ressource il faut passer au format yaml ou json.
 
 - Lister toutes les informations sur les nodes du clusters au format yaml
-- Lister toutes les informations d'une des nodes
 
-> noter que le résultat est une ressource ayant un champ items qui contient les ressources nodes
+> noter que le résultat est une ressource _items_ ayant un champ qui contient les ressources nodes
+
+- Lister toutes les informations de la node ayant le role master par son nom au format yaml
 
 <details>
 <summary>Solution</summary>
@@ -80,7 +81,7 @@ k get nodes k3d-workshop-server-0 -o yaml
 
 </details>
 
-- Lister uniquement les informations des nodes ayant le rôle _master_
+- Lister uniquement les informations des nodes ayant le rôle _master_ (cf labels)
 
 > utiliser --help et le résultat de la commande précédente
 
@@ -98,7 +99,7 @@ k get nodes -l node-role.kubernetes.io/master=true
 - Observer d'autres ressources comme _events_ qui sont les évenements déclenchés au sein du cluster
 - Trouver un moyen de trier les evennements par ordre de déclenchement du plus ancien au plus récent
 
-> utiliser --help et le resultat des informations d'un évenement au format yaml
+> utiliser --help et le resultat des informations d'un évenement au format yaml pour obtenir le nom d'une propriété pour le tri
 
 <details>
 <summary>Solution</summary>

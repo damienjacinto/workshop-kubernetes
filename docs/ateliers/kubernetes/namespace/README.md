@@ -26,17 +26,33 @@ k get po -A
 k get po -n kube-system
 ```
 
-Certaines ressources ont un scope cluster d'autres ressources ont un scope namespace, utiliser _k api-resources_ pour connaître le scope.
+Certaines ressources ont un scope cluster d'autres ressources ont un scope namespace, utiliser _k api-resources_ pour connaître leur scope.
 
 </details>
 
 ## Exercice 2
 
+Il existe une commande pour observer une ressource dans une vue qui consolide les informations obtenues avec un get mais aussi des informations d'autres ressources associées à la ressource observée. Utiliser le verbe _describe_ sur la node master.
+
+<details>
+<summary>Solution</summary>
+
+```shell
+k describe node k3d-workshop-server-0
+```
+
+</details>
+
+> On peut observer les informations de la node, les _pods_ qui sont en cours d'execution sur la node, les _events_ en lien avec la node.
+
+## Exercice 3
+
 Pour faciliter les changements de contextes et namespace il existe des outils kubectx et kubens.
 
-- utiliser kubenswin ou kubens (Linux) pour naviguer entre les namespaces
+- utiliser kubenswin ou kubens (Linux) pour naviguer entre les namespaces default, kube-system et workshop
 - consulter le fichier kubeconfig entre chaque changement et comprendre les changements réalisés par kubenswin (sur windows C:\Users\\<user\>\\.kube\config)
 
 Il existe aussi la commande kubectxwin ou kubectx (Linux) pour changer entierement de contexte (changer de cluster)
 
 > Toujours vérifier son contexte avant d'appliquer un changement sur un cluster !
+> Chaque commande lancé depuis kubectl consulte le fichier kubeconfig pour connaitre le contexte à utiliser, il n'y a pas de connexion maintenu avec le cluster.

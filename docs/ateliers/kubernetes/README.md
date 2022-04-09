@@ -6,7 +6,7 @@ next: "./kubeconfig/"
 # Kubernetes
 
 Une distribution kubernetes correspond à une version de kubernetes standard avec plus ou moins de services annexes pré-packagés.
-Lors de cet atelier nous allons utiliser k3d qui est une version conteneurisée de [k3s](https://k3s.io/) elle-même une distribution de kubernetes distribuée par Rancher ([k3d](https://github.com/rancher/k3d))
+Lors de cet atelier nous allons utiliser k3d qui est une version conteneurisée de [k3s](https://k3s.io/) elle-même une distribution de kubernetes construite par Rancher ([k3d](https://github.com/rancher/k3d))
 Cela veut dire que notre _control plane_ et nos _nodes_ seront conteneurisées, on ne pourra pas accéder aux éléments comme c'est le cas sur un cluster managé par un clouder.
 
 ## Préparation
