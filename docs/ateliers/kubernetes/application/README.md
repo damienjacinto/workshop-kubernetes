@@ -23,11 +23,22 @@ k run --generator=run-pod/v1 --image=nginxdemos/hello hello --restart='Never'
 k run --image=nginxdemos/hello hello --restart='Never'
 ```
 
-- Consulter la page nginx en utilisant kubectl et un port-forward sur le port 80 du pod
+- Consulter la page nginx en utilisant kubectl et un port-forward entre le port 80 du pod et le port local 9000 (<http://localhost:9000>)
+
+> la commande port-forward peut être initialisée sur un déploiement, un service ou un pod malgré que le bind se fera uniquement sur un pod.
+
+<details>
+<summary>Solution</summary>
+
+```shell
+k port-forward po/hell 9000:80
+```
+
+</details>
 
 ## Exercice 2
 
-Il est possible de réaliser les mêmes opérations qu'avec un container docker sur son poste
+Il est possible de réaliser les mêmes opérations qu'avec un container docker depuis son poste avec kubectl
 
 - Consulter les logs avec la commande _k logs_
 - Obtenir un shell dans le container avec la commande _k exec_
@@ -200,7 +211,9 @@ EOF
 
 </details>
 
-- Consulter les ingress pour connaître l'ip d'entrée du flux, depuis votre navigateur consulter plusieurs fois l'url pour illustrer le round-robin du service (Sur windows ajouter le port utilisé pour le loadbalancer 8081)
+- Consulter plusieurs fois l'application depuis votre navigateur pour illustrer le round-robin du service, le loadbalancer initialisé lors de la création du cluster k3d expose le port 8081 sur votre machine locale (k3d cluster create workshop -a 1 -p "8081:80@loadbalancer")
 
-> Il est possible suivant l'ingress controler de faire des règles de routing sur le host, l'ip, un header http, des cookies, ect.
+> Il est possible suivant l'ingress controler de faire des règles de routing sur le host, le path, un header http, des cookies, ect.
 > Il existe aussi une ressource Egress permettant de gérer le flux sortant
+>
+> Un résumé du flux : localhost port 8081 sur votre poste -> loadbalancer (entrant 80 : sortant 80) -> ingress -> service (entrant 80 : sortant 80) -> pod (entrant 80 : local 80) -> container (port 80)

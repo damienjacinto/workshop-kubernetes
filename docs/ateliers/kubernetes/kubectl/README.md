@@ -17,6 +17,7 @@ Exemple de verbes disponibles: get (GET), create (POST), patch (PUT), delete (DE
 
 ```shell
 kubectl api-resources #liste toutes les ressources gérées par l'api kubernetes
+kubectl get all # Présente les ressources principales du namespace courant
 kubectl get pods # Liste les pods dans le namespace courant
 kubectl get pods -A # Liste tous les pods du cluster
 ```

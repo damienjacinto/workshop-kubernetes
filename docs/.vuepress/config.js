@@ -82,6 +82,7 @@ module.exports = {
                   "/ateliers/kubernetes/namespace/",
                   "/ateliers/kubernetes/apply/",
                   "/ateliers/kubernetes/application/",
+                  "/ateliers/kubernetes/autoscaling/",
                 ],
               },
               {

@@ -1,7 +1,7 @@
 # Appliquer des changements
 
 Par défaut kubernetes est installé sans interface graphique, il existe cependant une interface officielle.
-Nous allons profiter de cet atelier pour l'installler et voir une autre manière d'installer des ressources dans un cluster.
+Nous allons profiter de cet atelier pour l'installler et voir une manière d'installer des ressources dans un cluster.
 
 Consulter la page [dashboard](https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml)
 Ce fichier yaml contient toutes les ressources nécessaires pour réaliser le déploiement du dashboard.
@@ -12,7 +12,7 @@ Il contient de manière non exaustive:
 - création d'un service pour exposer le dashboard
 - création d'un compte kubernetes-dashboard
 - création d'un role et cluster role ainsi que les binding associés
-- création du déploiement
+- création du déploiement qui va deployer les container du dashboard
 
 Pour appliquer ces changements:
 
@@ -25,8 +25,8 @@ k apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/dep
 > Si vous utilisez chrome pour l'atelier activer les certificats auto-signé sur localhost
 > taper _chrome://flags/#allow-insecure-localhost_ dans l'url et activer l'option.
 
-- Se placer dans le namespace du dashboard et consulter les pods déployés, noter les ports utilisés avec _k describe_
-- Consulter le service du dashbaord les cibles et les ports utilisés
+- Se placer dans le namespace du dashboard et consulter les pods déployés, noter les ports utilisés avec _k describe po_
+- Consulter le service du dashboard (kubernetes-dashboard) les cibles et les ports utilisés (noter comment le service sélectionne les pod qui vont recevoir le flux)
 - Utiliser la commande _k port-forward_ pour bind un port local de votre machine au port du service dashboard
 - Comparer le retour de la commande et la ligne commande saisie en s'appuyant sur le describe fait précédement
 - Consulter l'url https://localhost en précisant le port local utilisé dans le port-forward
@@ -37,9 +37,10 @@ k apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/dep
 ```shell
 k config set-context --current --namespace=kubernetes-dashboard
 k get po
-k describe po kubernetes-dashboard
+k describe po kubernetes-dashboard-xxxxx
 k get svc
-k describe svc dashboard
+k describe svc kubernetes-dashboard
+k port-forward svc/kubernetes-dashboard 9000:443
 ```
 
 > Le pod kubernetes-dashboard a un label _k8s-app=kubernetes-dashboard_.
@@ -53,7 +54,7 @@ k describe svc dashboard
 ## Exercice 2
 
 Pour se connecter au dashboard kubernetes il faut renseigner un token d'un utilisateur autorisé à utiliser le dashboard.
-Nous allons dans cet exercice créer un user avec une autre methode de modification d'un cluster.
+Nous allons dans cet exercice créer un user avec une autre methode de modification de ressource kubernetes.
 
 - Créer un user technique (serviceaccount) 'dashboard-admin' dans le namespace kubernetes-dashboard en utilisant _k create sa_
 - Lister les roles existants au niveau cluster (clusterrole). Kubernetes propose déjà des rôles, consulter notamment le cluster rôle 'admin' au format yaml
@@ -120,6 +121,6 @@ Dans l'exercice précédent on a associé à notre user un rôle au niveau clust
 
 Dans une application dite 'cloud native', on va s'appuyer sur la gestion des droits dans kubernetes pour gérer les droits au niveau de l'application.
 En donnant des droits limités au namespace à l'utilisateur par l'intermédiaire d'un rolebinding qui est une ressource par namespace, l'utilisateur ne verra que les ressources du namespace pour lequel le role lui a été affecté.
-On pourra aller encore plus finement dans les droits en créant un role spécifiquement pour l'utilisateur et en n'autorisant pas certaines ressources.
+On pourra aller encore plus finement dans les droits en créant un role spécifiquement pour l'utilisateur et autorisant uniquement certaines ressources.
 
 </details>
