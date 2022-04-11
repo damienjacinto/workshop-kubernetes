@@ -4,7 +4,7 @@ next: false
 
 # Autoscaling
 
-La ressource en charge de gérer le nombre de pods d'une application est le ReplicaSet. Comme vu précédement dans les exercices la commande _scale_ permet de manipuler ce nombre de maniere manuelle. Il existe une ressource capable de modifier dynamiquement ce nombre en fonction de métriques comme la mémoire. Cette ressource est le HPA ou HorizontalPodAutoscaler.
+La ressource en charge de gérer le nombre de pods d'une application est le ReplicaSet. Comme vu précédement dans les exercices la commande _scale_ permet de manipuler ce nombre de manière manuelle. Il existe une ressource capable de modifier dynamiquement ce nombre en fonction de métriques comme la mémoire. Cette ressource est le HPA ou HorizontalPodAutoscaler.
 
 ## Exercice 1
 
@@ -32,7 +32,7 @@ k expose deploy app
 k get pods -A | grep metrics-server
 ```
 
-> Ce service permet d'exposer pour la commande _top_ les métriques de bases (CPU et mémoire) des pods et nodes
+> Ce service permet d'exposer pour la commande _top_ les métriques de bases (CPU et mémoire) des pods et des nodes
 
 - Consulter les métriques des nodes puis les métriques des pods du namespace courant
 
@@ -46,7 +46,7 @@ k top pod
 
 </details>
 
-> [Prometheus](https://github.com/prometheus/prometheus) permet d'étendre le monitoring à d'autres métriques comme par exemple le nombre de requêtes http, le nombre d'éléments dans une queue.
+> [Prometheus](https://github.com/prometheus/prometheus) permet d'étendre le monitoring à d'autres métriques comme par exemple le nombre de requêtes http, le nombre d'éléments dans un système de bus ou queue.
 
 ## Exercice 2
 
@@ -58,13 +58,13 @@ k autoscale deployment app --cpu-percent=50 --min=2 --max=10
 
 > Scale de 2 à 10 pods le déploiement en fonction de la consommation cpu, avec comme déclencheur une utilisation du CPU à plus de 50%
 >
-> Cela nous permet de délguer la gestion du nombre de réplicas (nombre de pod) de notre application au HPA à la place du deploiement qui est statique
+> Cela nous permet de déléguer la gestion du nombre de réplicas (nombre de pods) de notre application au HPA à la place du deploiement qui est statique
 
 - Consulter le HPA en _watch_ dans un terminal à part pour suivre son évolution
 
 - Consulter les pods et vérifier la présence de 2 pods minimum
 
-> Les metriques sont collectées et exposées en pseudo temps réél, il y a un léger décallage entre les informations présentées et la réelle consommation.
+> Les métriques sont collectées et exposées en pseudo temps réél, il y a un décallage entre les informations présentées et la réelle consommation.
 
 ## Exercice 3
 
