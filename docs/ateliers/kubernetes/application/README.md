@@ -38,7 +38,7 @@ k port-forward po/hell 9000:80
 
 ## Exercice 2
 
-Il est possible de réaliser les mêmes opérations qu'avec un container docker depuis son poste avec kubectl
+Il est possible de réaliser les mêmes opérations sur un cluster kubernetes qu'avec un container docker depuis son poste à l'aide de kubectl
 
 - Consulter les logs avec la commande _k logs_
 - Obtenir un shell dans le container avec la commande _k exec_

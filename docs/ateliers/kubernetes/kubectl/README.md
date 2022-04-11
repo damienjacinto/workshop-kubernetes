@@ -2,7 +2,7 @@
 
 kubectl est un client qui permet d'interragir avec l'api d'un cluster kubernetes.
 
-C'est la commande qui va être le plus utilisée dans la suite de cet atelier mais aussi au quotidien dans votre usage de kubernetes, par commodité créer un alias pour kubectl (k)
+C'est la commande qui va être le plus utilisée dans la suite de cet atelier mais aussi au quotidien dans votre usage de kubernetes, par commodité ajouter un alias pour kubectl (k)
 
 ```shell
 # Windows

@@ -44,7 +44,7 @@ Un fichier _kubeconfig_ peut contenir plusieurs users, plusieurs clusters et don
 
 ## Générer le kubeconfig
 
-k3d permet de générer le kubeconfig pour se conneter au cluster précédement créé
+k3d permet de générer le kubeconfig pour se connecter au cluster précédement créé
 
 ```shell
 k3d kubeconfig get workshop
