@@ -44,6 +44,7 @@ module.exports = {
     docsDir: "docs",
     docsBranch: "main",
     editLinks: true,
+    smoothScroll: true,
     locales: {
       "/": {
         selectText: "Languages",
