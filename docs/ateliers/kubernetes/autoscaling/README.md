@@ -18,7 +18,7 @@ La ressource en charge de gérer le nombre de pods d'une application est le Repl
 ```shell
 k create ns autoscaling
 k config set-context --current --namespace=autoscaling
-k create deploy app --image=8s.gcr.io/hpa-example --port=80
+k create deploy app --image=k8s.gcr.io/hpa-example --port=80
 k expose deploy app
 ```
 
@@ -84,7 +84,7 @@ k run -it busybox --image=busybox /bin/sh
 - Solliciter l'application _app_ depuis le pod busybox avec la commande suivante:
 
 ```shell
-while true; do wget -q -0- http://app.autoscaling.svc.cluster.local; done
+while true; do wget -q -O- http://app.autoscaling.svc.cluster.local; done
 ```
 
 - Consulter dans une autre fenêtre le hpa et les pods du namespace
